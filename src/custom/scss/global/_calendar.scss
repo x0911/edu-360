@@ -1,0 +1,36 @@
+.v-application {
+  .v-calendar {
+    .v-calendar-weekly__head, .v-calendar-daily_head-day {
+      .v-calendar-weekly__head-weekday, .v-calendar-daily_head-weekday {
+        padding-bottom: 6px;
+        padding-top: 6px;
+        text-transform: none;
+        font-size: 14px;
+      }
+    }
+    .v-calendar-weekly__day {
+      .v-calendar-weekly__day-label {
+        .v-btn.v-btn--depressed.v-btn--fab.v-btn--round.v-size--small {
+          margin: 2px auto 6px auto;
+          height: 56px;
+          width: 56px;
+        }
+      }
+    }
+    .v-event-timed {
+      .pl-1 {
+        padding-right: 4px;
+      }
+    }
+    .v-event {
+      height: auto !important;
+      .pl-1 {
+        padding-right: 4px;
+        strong {
+          display: block;
+          font-weight: normal;
+        }
+      }
+    }
+  }
+}

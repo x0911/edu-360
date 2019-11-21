@@ -1,32 +1,68 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+  <div v-if="appActive">
+    <v-app v-if="current_user">
+      <app-topbar></app-topbar>
+      <v-content>
+        <router-view></router-view>
+      </v-content>
+    </v-app>
+    <v-app v-else>
+      <v-content>
+        <no-auth-landing></no-auth-landing>
+      </v-content>
+    </v-app>
+  </div>
+  <div v-else>
+    <div id="app-preloader">
+      <div class="preloader-container">
+        <div class="loader"></div>
+        <div class="loader-text ls-1">Please Focus</div>
+      </div>
     </div>
-    <router-view />
   </div>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+<script>
+function loadView(view) {
+  return () => import(`@/components/${view}.vue`);
 }
-
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
+export default {
+  name: "App",
+  components: {
+    AppTopbar: loadView("topbars/app_topbar"),
+    NoAuthLanding: loadView("no_auth/no_auth_landing")
+  },
+  created() {
+    // window.addEventListener('focus', this.addFocus);
+    // window.addEventListener('blur', this.addBlur);
+  },
+  mounted() {
+    this.getLang();
+    this.$store.state.isOnline = navigator.onLine ? true : false;
+  },
+  data: () => ({
+    appActive: true
+  }),
+  computed: {
+    current_user() {
+      return this.$store.state.currentUser;
+    },
+  },
+  methods: {
+    addFocus() {
+      return this.appActive = true;
+    },
+    addBlur() {
+      return this.appActive = false;
+    },
+    getLang() {
+      let langs = ['ar', 'en'], 
+        lang = this.$cookies.get('gen_lang');
+      if (langs.includes(lang)) this.changeLang(lang);
+    },
+    handleConnectivityChange(status) {
+      this.$store.state.isOnline = status;
     }
   }
-}
-</style>
+};
+</script>

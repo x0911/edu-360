@@ -1,15 +1,47 @@
+<!-- Define HTML5 doctype -->
 <!DOCTYPE html>
 <html lang="en">
+  <!-- Main Language is English -->
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
-    <title>edu-360</title>
+    <!-- Character Set - To be able to use Arabic -->
+    <meta charset="utf-8" />
+    <!-- Short description for the app -->
+    <meta name="description" content="" />
+    <!-- Preloader styles -->
+    <link rel="stylesheet" href="<%= BASE_URL %>preloader.css" />
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="<%= BASE_URL %>manifest.json" />
+    <!-- Main Color in Schema -->
+    <meta name="theme-color" content="#1976d2" />
+    <!-- Simulate an HTTP response header -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- Make it responsive - Define user's visible area  -->
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui"
+    />
+    <!-- App Icon -->
+    <link rel="icon" href="<%= BASE_URL %>favicon.ico" />
+    <!-- App Name -->
+    <title>Edu 360</title>
   </head>
+
   <body>
+    <!-- Static Preloader -->
+    <div id="app-preloader">
+      <div class="preloader-container">
+        <div class="loader"></div>
+      </div>
+    </div>
+    <!-- In case Javascript is not enabled in the browser -->
     <noscript>
-      <strong>We're sorry but edu-360 doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+      <div>
+        Browser is too old.
+      </div>
+      <div>
+        We're sorry but <strong>Edu 360</strong> doesn't work properly without
+        JavaScript enabled. Please enable it to continue.
+      </div>
     </noscript>
     <div id="app"></div>
     <!-- built files will be auto injected -->
