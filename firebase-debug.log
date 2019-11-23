@@ -1,0 +1,117 @@
+[debug] [2019-11-23T14:00:26.432Z] ----------------------------------------------------------------------
+[debug] [2019-11-23T14:00:26.438Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\united\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
+[debug] [2019-11-23T14:00:26.439Z] CLI Version:   7.8.0
+[debug] [2019-11-23T14:00:26.439Z] Platform:      win32
+[debug] [2019-11-23T14:00:26.439Z] Node Version:  v12.13.1
+[debug] [2019-11-23T14:00:26.442Z] Time:          Sat Nov 23 2019 16:00:26 GMT+0200 (GMT+02:00)
+[debug] [2019-11-23T14:00:26.442Z] ----------------------------------------------------------------------
+[debug] [2019-11-23T14:00:26.442Z] 
+[debug] [2019-11-23T14:00:26.530Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2019-11-23T14:00:26.531Z] > authorizing via signed-in user
+[debug] [2019-11-23T14:00:26.532Z] [iam] checking project edu-v360 for permissions ["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebasehosting.sites.update","firebaserules.releases.create","firebaserules.releases.update","firebaserules.rulesets.create"]
+[debug] [2019-11-23T14:00:26.536Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2019-11-23T14:00:26.537Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2019-11-23T14:00:27.159Z] <<< HTTP RESPONSE 200
+[debug] [2019-11-23T14:00:27.196Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/edu-v360:testIamPermissions  
+
+[debug] [2019-11-23T14:00:27.928Z] <<< HTTP RESPONSE 200
+[debug] [2019-11-23T14:00:27.932Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/edu-v360  
+ 
+[debug] [2019-11-23T14:00:28.666Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Deploying to 'edu-v360'...
+[info] 
+[info] i  deploying storage, firestore, functions, hosting
+[info] Running command: npm --prefix "$RESOURCE_DIR" run lint
+[info] +  functions: Finished running predeploy script.
+[debug] [2019-11-23T14:00:43.151Z] >>> HTTP REQUEST GET https://appengine.googleapis.com/v1/apps/edu-v360  
+ 
+[debug] [2019-11-23T14:00:44.693Z] <<< HTTP RESPONSE 200
+[info] i  firebase.storage: checking storage.rules for compilation errors...
+[debug] [2019-11-23T14:00:44.701Z] >>> HTTP REQUEST POST https://firebaserules.googleapis.com/v1/projects/edu-v360:test  
+
+[debug] [2019-11-23T14:00:46.023Z] <<< HTTP RESPONSE 200
+[info] +  firebase.storage: rules file storage.rules compiled successfully
+[info] i  firestore: reading indexes from firestore.indexes.json...
+[info] i  cloud.firestore: checking firestore.rules for compilation errors...
+[debug] [2019-11-23T14:00:46.038Z] >>> HTTP REQUEST POST https://firebaserules.googleapis.com/v1/projects/edu-v360:test  
+
+[debug] [2019-11-23T14:00:47.074Z] <<< HTTP RESPONSE 200
+[info] +  cloud.firestore: rules file firestore.rules compiled successfully
+[debug] [2019-11-23T14:00:47.082Z] > [functions] package.json contents: {
+  "name": "functions",
+  "description": "Cloud Functions for Firebase",
+  "scripts": {
+    "lint": "eslint .",
+    "serve": "firebase serve --only functions",
+    "shell": "firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log"
+  },
+  "engines": {
+    "node": "8"
+  },
+  "dependencies": {
+    "firebase-admin": "^8.6.0",
+    "firebase-functions": "^3.3.0"
+  },
+  "devDependencies": {
+    "eslint": "^5.12.0",
+    "eslint-plugin-promise": "^4.0.1",
+    "firebase-functions-test": "^0.1.6"
+  },
+  "private": true
+}
+[info] i  functions: ensuring necessary APIs are enabled...
+[debug] [2019-11-23T14:00:47.086Z] >>> HTTP REQUEST GET https://serviceusage.googleapis.com/v1/projects/edu-v360/services/cloudfunctions.googleapis.com  
+ 
+[debug] [2019-11-23T14:00:47.087Z] >>> HTTP REQUEST GET https://serviceusage.googleapis.com/v1/projects/edu-v360/services/runtimeconfig.googleapis.com  
+ 
+[debug] [2019-11-23T14:00:48.593Z] <<< HTTP RESPONSE 200
+[debug] [2019-11-23T14:00:48.715Z] <<< HTTP RESPONSE 200
+[info] +  functions: all necessary APIs are enabled
+[debug] [2019-11-23T14:00:48.719Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/edu-v360/adminSdkConfig  
+ 
+[debug] [2019-11-23T14:00:49.249Z] <<< HTTP RESPONSE 200
+[debug] [2019-11-23T14:00:49.253Z] >>> HTTP REQUEST POST https://firebasehosting.googleapis.com/v1beta1/sites/edu-v360/versions  
+
+[debug] [2019-11-23T14:00:51.758Z] <<< HTTP RESPONSE 200
+[debug] [2019-11-23T14:00:51.763Z] >>> HTTP REQUEST GET https://firebaserules.googleapis.com/v1/projects/edu-v360/releases?pageSize=10&pageToken=  
+ 
+[debug] [2019-11-23T14:00:52.372Z] <<< HTTP RESPONSE 200
+[debug] [2019-11-23T14:00:52.375Z] >>> HTTP REQUEST GET https://firebaserules.googleapis.com/v1/projects/edu-v360/rulesets/ac2510f3-c253-41ff-b8c0-3116981eaa5b  
+ 
+[debug] [2019-11-23T14:00:53.438Z] <<< HTTP RESPONSE 200
+[info] i  storage: latest version of storage.rules already up to date, skipping upload...
+[debug] [2019-11-23T14:00:53.445Z] >>> HTTP REQUEST GET https://firebaserules.googleapis.com/v1/projects/edu-v360/releases?pageSize=10&pageToken=  
+ 
+[debug] [2019-11-23T14:00:53.446Z] >>> HTTP REQUEST GET https://firestore.googleapis.com/v1beta2/projects/edu-v360/databases/(default)/collectionGroups/-/indexes  
+ 
+[debug] [2019-11-23T14:00:54.185Z] <<< HTTP RESPONSE 200
+[debug] [2019-11-23T14:00:54.187Z] >>> HTTP REQUEST GET https://firestore.googleapis.com/v1beta2/projects/edu-v360/databases/(default)/collectionGroups/-/fields?filter=indexConfig.usesAncestorConfig=false  
+ 
+[debug] [2019-11-23T14:00:54.522Z] <<< HTTP RESPONSE 200
+[debug] [2019-11-23T14:00:54.523Z] >>> HTTP REQUEST GET https://firebaserules.googleapis.com/v1/projects/edu-v360/rulesets/be51a45b-1d35-4610-b1fb-317bad5fd290  
+ 
+[debug] [2019-11-23T14:00:54.753Z] <<< HTTP RESPONSE 200
+[info] +  firestore: deployed indexes in firestore.indexes.json successfully
+[debug] [2019-11-23T14:00:55.587Z] <<< HTTP RESPONSE 200
+[info] i  firestore: latest version of firestore.rules already up to date, skipping upload...
+[info] i  functions: preparing functions directory for uploading...
+[debug] [2019-11-23T14:00:55.597Z] >>> HTTP REQUEST GET https://runtimeconfig.googleapis.com/v1beta1/projects/edu-v360/configs  
+ 
+[debug] [2019-11-23T14:00:56.400Z] <<< HTTP RESPONSE 200
+[info] i  hosting[edu-v360]: beginning deploy...
+[info] i  hosting[edu-v360]: found 162 files in dist
+[debug] [2019-11-23T14:00:58.624Z] [hosting] hash cache [ZGlzdA] stored for 162 files
+[debug] [2019-11-23T14:00:58.624Z] [hosting][hash queue][FINAL]
+[debug] [2019-11-23T14:00:58.624Z] >>> HTTP REQUEST POST https://firebasehosting.googleapis.com/v1beta1/sites/edu-v360/versions/e1a131fbcc64ca83:populateFiles  
+ <request body omitted>
+[debug] [2019-11-23T14:01:02.818Z] <<< HTTP RESPONSE 200
+[debug] [2019-11-23T14:01:02.886Z] [hosting][populate queue][FINAL]
+[debug] [2019-11-23T14:01:02.886Z] [hosting] uploads queued: 72
+[debug] [2019-11-23T14:04:11.754Z] [uploadQueue] Retrying task 375cb7f00bf99ad3000b943f9a1996074b44c3bea35ac91094ec1be84edc1eec
+[debug] [2019-11-23T14:05:49.073Z] [uploadQueue] Retrying task 375cb7f00bf99ad3000b943f9a1996074b44c3bea35ac91094ec1be84edc1eec
+[debug] [2019-11-23T14:07:33.764Z] [uploadQueue] Retrying task 375cb7f00bf99ad3000b943f9a1996074b44c3bea35ac91094ec1be84edc1eec

@@ -61,7 +61,7 @@ $line_heights: 1,2,3,4,5,6;
         left: 50%;
         -webkit-transform: translate(-50%, -50%);
         transform: translate(-50%, -50%);
-        font-size: 4em !important;
+        font-size: 5em !important;
     }
     &.center {
         .v-icon {
@@ -114,16 +114,30 @@ $rotations: "Y", "X";
 
 // Text field with button as append
 .v-text-field--rounded.append-with-button {
-    .v-input__slot {
-        padding-right: 0px !important;
-        .v-input__append-inner {
-            margin: 0 !important;
-            padding: 0 !important;
-            // padding-top: 4px !important;
-            height: 56px;
-            .v-btn {
-                height: inherit;
+    > .v-input__control {
+        > .v-input__slot {
+            padding-right: 0px !important;
+            .v-input__append-inner {
+                margin: 0 !important;
+                padding: 0 !important;
+                // padding-top: 4px !important;
+                height: 56px;
+                .v-btn {
+                    height: inherit;
+                }
             }
         }
     }
+}
+
+// Z Indexes
+@for $i from 1 through 4 {
+    .z-index-#{$i} {
+        z-index: $i;
+    }
+}
+
+// Word Braking
+.break-word {
+    word-break: break-word;
 }

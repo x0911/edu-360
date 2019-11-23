@@ -31,6 +31,12 @@ Vue.use(VueYoutube);
 Vue.use(require("vue-moment"));
 import VueApexCharts from "vue-apexcharts";
 Vue.component("apexChart", VueApexCharts);
+import VueAwesomeSwiper from "vue-awesome-swiper";
+// require styles
+import "swiper/dist/css/swiper.css";
+Vue.use(VueAwesomeSwiper);
+import LotAnim from "vue-lottie-web";
+Vue.component("LotAnim", LotAnim);
 
 // import custom scss
 import "@/custom/scss/main.scss";
@@ -46,6 +52,8 @@ fb.auth.onAuthStateChanged(user => {
     app = new Vue({
       created() {
         AOS.init();
+      },
+      mounted() {
         document.querySelector("#app-preloader").remove();
       },
       data: {
@@ -188,6 +196,18 @@ Vue.mixin({
       this.$vuetify.theme.themes.light = themes[theme];
       this.$store.state.options.currentTheme = theme;
       return true;
+    },
+    getYid(url) {
+      let video_id = url.split("v=")[1],
+        ampersandPosition = video_id.indexOf("&");
+      if (ampersandPosition != -1) {
+        video_id = video_id.substring(0, ampersandPosition);
+      }
+      return video_id;
+    },
+    getAnim(name) {
+      let data = require("@/assets/animation/" + name + ".json");
+      return data;
     }
   }
 });
