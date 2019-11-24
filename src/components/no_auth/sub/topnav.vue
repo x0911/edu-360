@@ -15,7 +15,7 @@
             </v-toolbar-title>
             <v-spacer></v-spacer>
             <v-toolbar-items>
-              <v-btn depressed :color="app_nav ? 'primary' : 'primback'" dark class="text-capitalize">Community</v-btn>
+              <v-btn depressed :color="app_nav ? 'primback' : 'primback'" dark class="text-capitalize">Community</v-btn>
               <v-btn depressed class="text-capitalize">Why Edu 360?</v-btn>
               <v-btn depressed>
                 <v-icon>mdi-translate</v-icon>
@@ -28,16 +28,6 @@
     <v-divider class="mb-0" v-if="!app_nav"></v-divider>
   </div>
 </template>
-swiperOption: {
-        pagination: {
-          el: '.swiper-pagination',
-          type: 'progressbar'
-        },
-        navigation: {
-          nextEl: '.swiper-button-next',
-          prevEl: '.swiper-button-prev'
-        }
-      }
 <script>
 export default {
   name: "no_auth_topnav",

@@ -1,7 +1,11 @@
-// .lottie {
-//   --color: attr('data-color');
-//   svg * {
-//     fill: var(--color);
-//     stroke: var(--color);
-//   }
-// }
+.lottie {
+  $colors: "white", "grey", "primary";
+  @each $color in $colors {
+    &.svg-#{$color} {
+      svg * {
+        fill: #{$color};
+        stroke: #{$color};
+      }
+    }
+  }
+}

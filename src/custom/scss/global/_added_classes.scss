@@ -139,5 +139,18 @@ $rotations: "Y", "X";
 
 // Word Braking
 .break-word {
-    word-break: break-word;
+    word-break: break-word !important;
+}
+
+// Zoom in Image for v-img
+
+.v-responsive.v-image {
+    .v-image__image {
+        transition: .6s;
+    }
+    &.zoom-on-hover {
+        .v-image__image {
+            transform: scale(1.03);
+        }
+    }
 }

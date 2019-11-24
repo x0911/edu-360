@@ -10,12 +10,13 @@
     </div>
     <!-- <in-divider class="z-index-1"></in-divider> -->
     <div class="content-container white">
-      <com-four class="mb-12 pt-12 z-index-1"></com-four>
+      <com-four @runYvid="runYvid" class="mb-12 pt-12 z-index-1"></com-four>
     </div>
     <div class="content-container white">
       <v-img class="content-background" :src="require('@/assets/pages/no-auth-landing/com-back.svg')"></v-img>
     </div>
     <com-footer></com-footer>
+    <youtube-dialog @hide_dialog="stopYvid" :url="youtube_dialog.url" :model="youtube_dialog.model"></youtube-dialog>
   </div>
 </template>
 
@@ -44,12 +45,27 @@ export default {
     ComThree: () => import("@/components/no_auth/sub/three.vue"),
     ComFour: () => import("@/components/no_auth/sub/four.vue"),
     ComFooter: () => import("@/components/no_auth/sub/footer.vue"),
+    YoutubeDialog: () => import("@/components/no_auth/sub/youtube-dialog.vue")
   },
   data: () => ({
-    
+    youtube_dialog: {
+      url: "",
+      model: false
+    }
   }),
   methods: {
-    
+    stopYvid() {
+      return this.youtube_dialog = {
+        url: "",
+        model: false
+      };
+    },
+    runYvid(url) {
+      return this.youtube_dialog = {
+        url,
+        model: true
+      };
+    }
   }
 };
 </script>

@@ -198,12 +198,22 @@ Vue.mixin({
       return true;
     },
     getYid(url) {
+      let video_id = url.split("v=")[1];
+      if (video_id) {
+        let ampersandPosition = video_id.indexOf("&");
+        if (ampersandPosition != -1) {
+          video_id = video_id.substring(0, ampersandPosition);
+        }
+      }
+      return video_id ? video_id : "";
+    },
+    getYthumb(url) {
       let video_id = url.split("v=")[1],
         ampersandPosition = video_id.indexOf("&");
       if (ampersandPosition != -1) {
         video_id = video_id.substring(0, ampersandPosition);
       }
-      return video_id;
+      return `https://img.youtube.com/vi/${video_id}/maxresdefault.jpg`;
     },
     getAnim(name) {
       let data = require("@/assets/animation/" + name + ".json");

@@ -178,6 +178,10 @@ export default {
   },  
   data: () => ({
     swiperOption: {
+      autoplay: {
+        delay: 2500,
+        disableOnInteraction: true
+      },
       slidesPerView: 1,
       slidesPerColumn: 1,
       spaceBetween: 30,
