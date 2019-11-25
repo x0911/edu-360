@@ -1,5 +1,6 @@
 <template>
   <div data-page="home">
+    <div id='recaptcha-container'></div>
     <div
       class="full-page top-section"
       :style="
@@ -38,41 +39,107 @@
                     educational platform that makes it easy for you to learn.
                   </v-card-text>
                   <v-card-text>
-                    <v-text-field
-                      outlined
-                      single-line
-                      label="Phone Number"
-                      rounded
-                      class="append-with-button dialog-text-field"
-                      prepend-inner-icon="mdi-phone"
-                      persistent-hint
-                      hint=" "
-                    >
-                      <template v-slot:append>
-                        <v-btn
-                          width="110"
-                          color="white"
-                          class="black--text"
+                    <v-tabs-items class="transparent" v-model="$store.state.login.step">
+                      <v-tab-item class="transparent" :value="0">
+                        <v-text-field
+                          outlined
+                          single-line
+                          label="Phone Number"
+                          dark
+                          :disabled="$store.state.login.loading"
                           rounded
+                          class="append-with-button dialog-text-field"
+                          prepend-inner-icon="mdi-phone"
+                          v-model="$store.state.login.phone.value"
+                          persistent-hint
+                          v-mask="$store.state.login.phone.mask"
+                          @keypress.enter="getCode()"
+                          hint=" "
                         >
-                          Next
-                          <span class="mx-1"></span>
-                          <v-icon class="rotateOnLangNigative" small
-                            >mdi-keyboard-backspace</v-icon
-                          >
-                        </v-btn>
-                      </template>
-                      <template v-slot:message="{ message, key }">
-                        <div :key="key">
-                          <v-btn
-                            class="text-capitalize"
-                            color="grey lighten-1"
-                            text
-                            >Lost Phone?</v-btn
-                          >
-                        </div>
-                      </template>
-                    </v-text-field>
+                          <template v-slot:append>
+                            <v-btn
+                              width="110"
+                              color="white"
+                              class="black--text"
+                              rounded
+                              :loading="$store.state.login.loading"
+                              @click="getCode()"
+                            >
+                              Next
+                              <span class="mx-1"></span>
+                              <v-icon class="rotateOnLangNigative" small
+                                >mdi-keyboard-backspace</v-icon
+                              >
+                            </v-btn>
+                          </template>
+                          <template v-slot:message="{ message, key }">
+                            <div :key="key">
+                              <v-btn
+                                class="text-capitalize"
+                                color="grey lighten-1"
+                                text
+                                >
+                                <v-avatar size="22" tile>
+                                  <lot-anim renderer="svg" className="svg-white" :animationData="getAnim('warning-blink')"></lot-anim>
+                                </v-avatar>
+                                <span class="mx-1"></span>
+                                Lost Phone?</v-btn
+                              >
+                            </div>
+                          </template>
+                        </v-text-field>
+                      </v-tab-item>
+                      <v-tab-item class="transparent" :value="1">
+                        <v-text-field
+                          outlined
+                          single-line
+                          label="Code"
+                          dark
+                          rounded
+                          v-model="$store.state.login.code.value"
+                          :disabled="$store.state.login.loading"
+                          class="append-with-button dialog-text-field"
+                          prepend-inner-icon="mdi-lock"
+                          @keypress.enter="verifyCode()"
+                          persistent-hint
+                          v-mask="$store.state.login.code.mask"
+                          hint=" "
+                        >
+                          <template v-slot:append>
+                            <v-btn
+                              width="120"
+                              color="white"
+                              class="black--text"
+                              :loading="$store.state.login.loading"
+                              @click="verifyCode()"
+                              rounded
+                            >
+                              Finish
+                              <span class="mx-1"></span>
+                              <v-icon class="rotateOnLangNigative" small
+                                >mdi-keyboard-backspace</v-icon
+                              >
+                            </v-btn>
+                          </template>
+                          <template v-slot:message="{ message, key }">
+                            <div :key="key">
+                              <v-btn
+                                class="text-capitalize"
+                                color="grey lighten-1"
+                                disabled
+                                text
+                                >
+                                <v-avatar size="22" tile>
+                                  <lot-anim renderer="svg" className="svg-white" :animationData="getAnim('refresh')"></lot-anim>
+                                </v-avatar>
+                                <span class="mx-1"></span>
+                                Resend Code in {{ 60 }}
+                              </v-btn>
+                            </div>
+                          </template>
+                        </v-text-field>
+                      </v-tab-item>
+                    </v-tabs-items>
                   </v-card-text>
                 </v-card>
               </v-col>
@@ -169,13 +236,33 @@
 </style>
 
 <script>
+const fb = require("@/firebase.config.js");
 export default {
   name: "hero",
   mounted() {
-    this.$refs.screenshot_swiper.swiper.on('slideChange',()=>{
+    this.$refs.screenshot_swiper.swiper.on('slideChange', () => {
       this.onScreenshotChange(this);
     });
-  },  
+    const $this = this;
+    if (!window.recaptchaVerifier) {
+      window.recaptchaVerifier = new fb.firebase.auth.RecaptchaVerifier('recaptcha-container', {
+        size: 'invisible',
+        'callback': function(response) {
+          return true;
+        },
+        'expired-callback': function() {
+          // Response expired.
+          let error = {
+            code: 'recaptcha_expired'
+          }
+          return $this.showError(error);
+        }
+      });
+      window.recaptchaVerifier.render().then((widgetId) => {
+        window.recaptchaWidgetId = widgetId;
+      });
+    }
+  },
   data: () => ({
     swiperOption: {
       autoplay: {

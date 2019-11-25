@@ -1,24 +1,27 @@
 <template>
-  <div v-if="appActive">
-    <v-app v-if="current_user">
-      <app-topbar></app-topbar>
-      <v-content>
-        <router-view></router-view>
-      </v-content>
-    </v-app>
-    <v-app v-else>
-      <v-content>
-        <no-auth-landing></no-auth-landing>
-      </v-content>
-    </v-app>
-  </div>
-  <div v-else>
-    <div id="app-preloader">
-      <div class="preloader-container">
-        <div class="loader"></div>
-        <div class="loader-text ls-1">Please Focus</div>
+  <div>
+    <div v-if="appActive">
+      <v-app v-if="current_user">
+        <app-topbar></app-topbar>
+        <v-content>
+          <router-view></router-view>
+        </v-content>
+      </v-app>
+      <v-app v-else>
+        <v-content>
+          <no-auth-landing></no-auth-landing>
+        </v-content>
+      </v-app>
+    </div>
+    <div v-else>
+      <div id="app-preloader">
+        <div class="preloader-container">
+          <div class="loader"></div>
+          <div class="loader-text ls-1">Please Focus</div>
+        </div>
       </div>
     </div>
+    <global-error-dialog></global-error-dialog>
   </div>
 </template>
 
@@ -30,7 +33,8 @@ export default {
   name: "App",
   components: {
     AppTopbar: loadView("topbars/app_topbar"),
-    NoAuthLanding: loadView("no_auth/no_auth_landing")
+    NoAuthLanding: loadView("no_auth/no_auth_landing"),
+    GlobalErrorDialog: loadView("items/error-dialog")
   },
   created() {
     // window.addEventListener('focus', this.addFocus);

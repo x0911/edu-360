@@ -120,6 +120,72 @@ Vue.mixin({
         };
       }
     },
+    getCode() {
+      this.$store.state.login.loading = true;
+      let $this = this,
+        phoneNumber = $this.$store.state.login.phone.value.replace(/-/g, "");
+      let appVerifier = window.recaptchaVerifier;
+      // console.log(phoneNumber);
+      fb.auth
+        .signInWithPhoneNumber(phoneNumber, appVerifier)
+        .then(function(confirmationResult) {
+          // SMS sent.
+          window.confirmationResult = confirmationResult;
+          $this.$store.state.login.step++;
+          $this.$store.state.login.loading = false;
+        })
+        .catch(function(error) {
+          $this.showError(error.code);
+          $this.$store.state.login.loading = false;
+        });
+    },
+    verifyCode() {
+      let $this = this;
+      if ($this.$store.state.login.step == 1 && window.confirmationResult) {
+        $this.$store.state.login.loading = true;
+        $this.$store.state.login.error = "";
+        let code = $this.$store.state.login.code.value;
+        window.confirmationResult
+          .confirm(code)
+          .then(function(result) {
+            // User signed in successfully.
+            let user = result.user;
+            $this.$store.commit("setCurrentUser", user);
+            $this.$router.push("/");
+          })
+          .catch(function(error) {
+            // User couldn't sign in (bad verification code?)
+            $this.showError(error.code);
+            $this.$store.state.login.loading = false;
+          });
+      }
+    },
+    showError(code) {
+      if (code) {
+        // console.log(code);
+        let msg = "",
+          showError = msg => {
+            this.$store.state.appError.msg = msg;
+            this.$store.state.appError.model = true;
+          };
+        switch (code) {
+          case "auth/invalid-verification-code":
+            msg =
+              "Verification Code is invalid. Please check code and try again.";
+            break;
+          case "auth/code-expired":
+            msg = "Code Expired. You can try a code twice. Please refresh page and try again.";
+            break;
+          case "recaptcha_expired":
+            msg = "reCaptcha Expired. Please refresh page and try again.";
+            break;
+          default:
+            msg = "A network error occured. Please refresh page and try again.";
+            break;
+        }
+        showError(msg);
+      }
+    },
     logout() {
       fb.auth
         .signOut()

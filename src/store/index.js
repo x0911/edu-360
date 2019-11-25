@@ -8,6 +8,10 @@ export default new Vuex.Store({
   state: {
     isOnline: false,
     app_title,
+    appError: {
+      msg: "",
+      model: false
+    },
     options: {
       drawer: null,
       rtl_sidenav: false,
@@ -16,7 +20,21 @@ export default new Vuex.Store({
       night_mode: false,
       currentTheme: "primary"
     },
-    currentUser: null
+    currentUser: null,
+
+    // Login
+    login: {
+      step: 0,
+      loading: false,
+      phone: {
+        mask: "+20-###-###-####",
+        value: ""
+      },
+      code: {
+        mask: "######",
+        value: ""
+      }
+    }
   },
   mutations: {
     mutationDrawer(state) {
