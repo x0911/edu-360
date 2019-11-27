@@ -36,7 +36,7 @@
                     style="font-size: 16px !important"
                   >
                     Whether you're graduated or a student, Edu 360 is an
-                    educational platform that makes it easy for you to learn.
+                    educational platform that bla bla bla for you to learn.
                   </v-card-text>
                   <v-card-text>
                     <v-tabs-items class="transparent" v-model="$store.state.login.step">

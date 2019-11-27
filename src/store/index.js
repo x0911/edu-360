@@ -20,8 +20,13 @@ export default new Vuex.Store({
       night_mode: false,
       currentTheme: "primary"
     },
+    noti_options: {
+      drawer: null,
+      rtl_sidenav: false,
+      fixed_sidenav: false,
+      mini_variant: false
+    },
     currentUser: null,
-
     // Login
     login: {
       step: 0,
@@ -34,7 +39,10 @@ export default new Vuex.Store({
         mask: "######",
         value: ""
       }
-    }
+    },
+
+    // Notifications
+    notis: ["1"]
   },
   mutations: {
     mutationDrawer(state) {

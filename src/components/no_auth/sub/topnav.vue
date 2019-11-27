@@ -10,7 +10,7 @@
             ref="no_auth_topnav"
           >
             <v-toolbar-title class="headline" style="position: relative; width: 120px; overflow: visible">
-              Edu 360
+              Edu <span class="font-weight-simibold">360</span>
               <span class="display-2" style="position: absolute; top: 50%; right: 0; transform: translate(0, -50%)">|</span>
             </v-toolbar-title>
             <v-spacer></v-spacer>

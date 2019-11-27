@@ -2,6 +2,8 @@
   <div>
     <div v-if="appActive">
       <v-app v-if="current_user">
+        <app-sidebar></app-sidebar>
+        <notis-sidebar></notis-sidebar>
         <app-topbar></app-topbar>
         <v-content>
           <router-view></router-view>
@@ -32,7 +34,9 @@ function loadView(view) {
 export default {
   name: "App",
   components: {
-    AppTopbar: loadView("topbars/app_topbar"),
+    AppSidebar: loadView("sidebars/global_sidebar"),
+    NotisSidebar: loadView("sidebars/notis_sidebar"),
+    AppTopbar: loadView("topbars/global_topbar"),
     NoAuthLanding: loadView("no_auth/no_auth_landing"),
     GlobalErrorDialog: loadView("items/error-dialog")
   },
@@ -43,6 +47,7 @@ export default {
   mounted() {
     this.getLang();
     this.$store.state.isOnline = navigator.onLine ? true : false;
+    // console.log(this.current_user);
   },
   data: () => ({
     appActive: true

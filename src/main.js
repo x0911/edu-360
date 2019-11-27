@@ -79,6 +79,11 @@ Vue.mixin({
       this.$vuetify.rtl = lang == "ar" ? true : false;
       return;
     },
+    getUdata(data, alt) {
+      return this.$store.state.currentUser && this.$store.state.currentUser[data]
+        ? this.$store.state.currentUser[data]
+        : (alt ? alt : '--');
+    },
     getDates(startDate, endDate) {
       var dates = [],
         currentDate = startDate,
@@ -174,7 +179,8 @@ Vue.mixin({
               "Verification Code is invalid. Please check code and try again.";
             break;
           case "auth/code-expired":
-            msg = "Code Expired. You can try a code twice. Please refresh page and try again.";
+            msg =
+              "Code Expired. You can try a code twice. Please refresh page and try again.";
             break;
           case "recaptcha_expired":
             msg = "reCaptcha Expired. Please refresh page and try again.";
