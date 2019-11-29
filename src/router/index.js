@@ -62,7 +62,6 @@ router.beforeEach((to, from, next) => {
   const requiresNoAuth = to.matched.some(x => x.meta.requiresNoAuth);
   const currentUser = fb.auth.currentUser;
   if (currentUser) {
-    // && (!store.state.currentUser || !store.state.userProfile)
     if (!store.state.currentUser) {
       store.commit("setCurrentUser", currentUser);
     }

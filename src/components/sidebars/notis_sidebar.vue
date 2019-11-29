@@ -30,13 +30,13 @@
       <v-list>
         <template v-for="(item,i) in notifications">
           <v-skeleton-loader 
-            v-if="item.loader" 
+            v-if="item.loader"
             loading 
             :key="i+'_l'"
             type="list-item-avatar-three-line"
           ></v-skeleton-loader>
-          <v-list-item v-else :class="[item.background, 'wrap']" color="primary" :to="item.url" exact :key="i">
-            <v-list-item-avatar :color="colors[item.color] ? colors[item.color].avatar : 'grey lighten-3'" size="45" v-if="item.avatar.icon">
+          <v-list-item v-else :class="[!item.done ? colors[item.color].avatar + '5' : '', 'wrap']" color="primary" :to="item.url" exact :key="i">
+            <v-list-item-avatar :color="colors[item.color] ? (!item.done ? colors[item.color].avatar + '4' : colors[item.color].avatar + '5') : 'grey lighten-3'" size="45" v-if="item.avatar.icon">
               <lot-anim 
                 renderer="svg" 
                 :class="[`svg-${colors[item.color] ? colors[item.color].icon : ''}`, item.avatar.stroke ? `stroke-${item.avatar.stroke}` : '']"
@@ -65,23 +65,23 @@ export default {
   data: () => ({
     colors: {
       primary: {
-        avatar: "blue lighten-5",
+        avatar: "blue lighten-",
         icon: "primary"
       },
       error: {
-        avatar: "error lighten-5",
+        avatar: "error lighten-",
         icon: "error"
       },
       success: {
-        avatar: "success lighten-5",
+        avatar: "success lighten-",
         icon: "success"
       },
       warning: {
-        avatar: "warning lighten-5",
+        avatar: "warning lighten-",
         icon: "warning darken-1"
       },
       purple: {
-        avatar: "purple lighten-5",
+        avatar: "purple lighten-",
         icon: "purple"
       }
     },

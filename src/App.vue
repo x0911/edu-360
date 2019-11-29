@@ -1,5 +1,6 @@
 <template>
   <div>
+    <app-update></app-update>
     <div v-if="appActive">
       <v-app v-if="current_user">
         <app-sidebar></app-sidebar>
@@ -14,6 +15,7 @@
           <no-auth-landing></no-auth-landing>
         </v-content>
       </v-app>
+      <youtube-dialog @hide_dialog="stopYvid" :url="$store.state.youtube_dialog.url" :model="$store.state.youtube_dialog.model"></youtube-dialog>
     </div>
     <div v-else>
       <div id="app-preloader">
@@ -34,11 +36,13 @@ function loadView(view) {
 export default {
   name: "App",
   components: {
+    AppUpdate: loadView("items/app-update"),
     AppSidebar: loadView("sidebars/global_sidebar"),
     NotisSidebar: loadView("sidebars/notis_sidebar"),
     AppTopbar: loadView("topbars/global_topbar"),
     NoAuthLanding: loadView("no_auth/no_auth_landing"),
-    GlobalErrorDialog: loadView("items/error-dialog")
+    GlobalErrorDialog: loadView("items/error-dialog"),
+    YoutubeDialog: loadView("items/youtube-dialog")
   },
   created() {
     // window.addEventListener('focus', this.addFocus);

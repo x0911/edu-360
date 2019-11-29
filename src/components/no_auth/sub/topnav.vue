@@ -9,9 +9,13 @@
             :app="app_nav"
             ref="no_auth_topnav"
           >
-            <v-toolbar-title class="headline" style="position: relative; width: 120px; overflow: visible">
-              Edu <span class="font-weight-simibold">360</span>
-              <span class="display-2" style="position: absolute; top: 50%; right: 0; transform: translate(0, -50%)">|</span>
+            <v-toolbar-title class="headline" style="position: relative; overflow: visible">
+              Edu
+              <v-avatar size="70" tile style="transform: translate(-12px)">
+                <v-img :src="require('@/assets/title-icon-black.png')"></v-img>
+              </v-avatar>
+              <!-- Edu <span class="font-weight-simibold">360</span> -->
+              <!-- <span class="display-2" style="position: absolute; top: 50%; right: 0; transform: translate(0, -50%)">|</span> -->
             </v-toolbar-title>
             <v-spacer></v-spacer>
             <v-toolbar-items>

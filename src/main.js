@@ -70,6 +70,21 @@ fb.auth.onAuthStateChanged(user => {
 // Mixins
 Vue.mixin({
   methods: {
+    // requestContentCreatorRole(uid) {
+    //   let requestContentCreatorRole = fb.functions.httpsCallable("requestContentCreatorRole"),
+    //       $this = this;
+    //   requestContentCreatorRole({
+    //     uid
+    //   }).then(result => {
+    //     if (result.data == "done") {
+          
+    //     } else {
+    //       $this.showError(result.data);
+    //     }
+    //   }).catch(error => {
+    //     $this.showError(error.code);
+    //   })
+    // },
     appConnection() {
       return this.$store.state.isOnline;
     },
@@ -80,9 +95,13 @@ Vue.mixin({
       return;
     },
     getUdata(data, alt) {
-      return this.$store.state.currentUser && this.$store.state.currentUser[data]
+      return this.$store.state.currentUser &&
+        this.$store.state.currentUser[data] &&
+        this.$store.state.currentUser[data].trim() !== ""
         ? this.$store.state.currentUser[data]
-        : (alt ? alt : '--');
+        : alt
+        ? alt
+        : "--";
     },
     getDates(startDate, endDate) {
       var dates = [],
@@ -157,6 +176,8 @@ Vue.mixin({
             let user = result.user;
             $this.$store.commit("setCurrentUser", user);
             $this.$router.push("/");
+            let href = document.location.href;
+            document.location.href = href;
           })
           .catch(function(error) {
             // User couldn't sign in (bad verification code?)
@@ -168,28 +189,24 @@ Vue.mixin({
     showError(code) {
       if (code) {
         // console.log(code);
-        let msg = "",
-          showError = msg => {
-            this.$store.state.appError.msg = msg;
+        let defaultMsg =
+            "A network error occured. Please refresh page and try again.",
+          showError = code => {
+            this.$store.state.appError.msg = errors[code]
+              ? errors[code]
+              : defaultMsg;
             this.$store.state.appError.model = true;
+          },
+          errors = {
+            "auth/invalid-verification-code":
+              "Verification Code is invalid. Please check code and try again.",
+            "auth/code-expired":
+              "Code Expired. You can try a code twice. Please refresh page and try again.",
+            recaptcha_expired:
+              "reCaptcha Expired. Please refresh page and try again.",
+            "displayName-empty": "Your name can't be less than 4 characters."
           };
-        switch (code) {
-          case "auth/invalid-verification-code":
-            msg =
-              "Verification Code is invalid. Please check code and try again.";
-            break;
-          case "auth/code-expired":
-            msg =
-              "Code Expired. You can try a code twice. Please refresh page and try again.";
-            break;
-          case "recaptcha_expired":
-            msg = "reCaptcha Expired. Please refresh page and try again.";
-            break;
-          default:
-            msg = "A network error occured. Please refresh page and try again.";
-            break;
-        }
-        showError(msg);
+        showError(code);
       }
     },
     logout() {
@@ -290,6 +307,19 @@ Vue.mixin({
     getAnim(name) {
       let data = require("@/assets/animation/" + name + ".json");
       return data;
+    },
+    // Youtube
+    stopYvid() {
+      return this.$store.state.youtube_dialog = {
+        url: "",
+        model: false
+      };
+    },
+    runYvid(url) {
+      return this.$store.state.youtube_dialog = {
+        url,
+        model: true
+      };
     }
   }
 });

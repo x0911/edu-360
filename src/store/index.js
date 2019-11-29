@@ -6,6 +6,9 @@ let app_title = "Edu 360";
 
 export default new Vuex.Store({
   state: {
+    app: {
+      updateFound: false
+    },
     isOnline: false,
     app_title,
     appError: {
@@ -42,7 +45,13 @@ export default new Vuex.Store({
     },
 
     // Notifications
-    notis: ["1"]
+    notis: ["1"],
+
+    // Youtube
+    youtube_dialog: {
+      url: "",
+      model: false
+    }
   },
   mutations: {
     mutationDrawer(state) {

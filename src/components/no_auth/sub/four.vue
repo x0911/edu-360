@@ -178,6 +178,7 @@
                     aspect-ratio="1"
                     position="center center"
                     :class="[hover ? 'zoom-on-hover' : '']"
+                    height="400"
                   >
                     <v-layout
                       fill-height

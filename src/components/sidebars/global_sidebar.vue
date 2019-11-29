@@ -86,9 +86,9 @@
                 </v-avatar>
               </template>
             </v-hover>
-            <v-list-item @click="getUdata('displayName', ' ') == ' ' ? test() : () => {}">
+            <v-list-item @click="updateUdata.name = true">
               <v-list-item-content>
-                <v-list-item-title v-text="getUdata('displayName', 'Click to add your name')"></v-list-item-title>
+                <v-list-item-title v-text="getUdata('displayName', 'Click to add your name')" class="mb-1"></v-list-item-title>
                 <v-list-item-subtitle v-text="`#${getUdata('uid').substr(0, 7)}...`"></v-list-item-subtitle>
               </v-list-item-content>
             </v-list-item>
@@ -99,7 +99,7 @@
       <v-list class="pt-0">
         <template v-for="(item,i) in single_items">
           <v-divider v-if="item.divider" :key="i+'_d'"></v-divider>
-          <v-list-item :class="item.background" v-else color="primary" :to="item.url" exact :key="i">
+          <v-list-item @click="item.method ? runFun(item.method) : () => {}" :class="item.background" v-else color="primary" :to="item.url" exact :key="i">
             <v-list-item-avatar v-if="item.avatar.icon">
               <lot-anim renderer="svg" className="svg-grey darken-1" v-if="item.avatar.svg" style="height: 25px" :animationData="getAnim(item.avatar.icon)"></lot-anim>
               <v-icon v-text="item.avatar.icon" v-else></v-icon>
@@ -112,13 +112,22 @@
         </template>
       </v-list>
     </v-navigation-drawer>
+    <update-u-name :dataModel="updateUdata.name" @hideModel="hideUpdateUdata('name')"></update-u-name>
   </div>
 </template>
 
 <script>
 export default {
   name: "global-sidebar",
+  components: {
+    UpdateUName: () => import("@/components/items/updateUname.vue")
+  },
   data: () => ({
+    updateUdata: {
+      name: false,
+      profile_photo: false,
+      cover_photo: false
+    },
     single_items: [
       {
         avatar: {
@@ -160,6 +169,15 @@ export default {
         url: "/friends"
       },
       {
+        avatar: {
+          svg: false,
+          icon: "mdi-creation"
+        },
+        title: "Content Creators",
+        subtitle: "",
+        url: "/content_creators"
+      },
+      {
         divider: true
       },
       {
@@ -178,7 +196,7 @@ export default {
         },
         title: "Logout",
         subtitle: "",
-        url: "/logout"
+        method: "logout"
       },
       {
         divider: true
@@ -195,8 +213,14 @@ export default {
     ]
   }),
   methods: {
+    runFun(fun) {
+      return this[fun]();
+    },
+    hideUpdateUdata(toHide) {
+      return this.updateUdata[toHide] = false;
+    },
     test() {
-      console.log("Tested");
+      // console.log("Tested");
     }
   }
 }

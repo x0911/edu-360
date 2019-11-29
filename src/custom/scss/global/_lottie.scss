@@ -14,7 +14,7 @@
     purple: purple
   );
   @each $key, $color in $colors {
-    &.svg-#{$key} {
+    &.svg-#{""+$key} {
       svg * {
         fill: $color;
         stroke: $color;
