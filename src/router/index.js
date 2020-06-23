@@ -5,11 +5,11 @@ const fb = require("../firebase.config.js");
 import NProgress from "nprogress";
 import "nprogress/nprogress.css";
 
+Vue.use(VueRouter);
+
 function loadView(view) {
   return () => import(`@/views/${view}.vue`);
 }
-
-Vue.use(VueRouter);
 
 const routes = [
   {

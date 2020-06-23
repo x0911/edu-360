@@ -46,7 +46,10 @@
                     color="grey lighten-3"
                     size="90"
                   >
-                    <lot-anim renderer="svg" :animationData="getAnim('pencil')"></lot-anim>
+                    <lot-anim
+                      renderer="svg"
+                      :animationData="getAnim('pencil')"
+                    ></lot-anim>
                   </v-avatar>
                 </div>
                 <div class="mt-8">
@@ -70,7 +73,10 @@
                     color="grey lighten-3"
                     size="90"
                   >
-                    <lot-anim renderer="svg" :animationData="getAnim('upload')"></lot-anim>
+                    <lot-anim
+                      renderer="svg"
+                      :animationData="getAnim('upload')"
+                    ></lot-anim>
                   </v-avatar>
                 </div>
                 <div class="mt-8">
@@ -94,7 +100,10 @@
                     color="grey lighten-3"
                     size="90"
                   >
-                    <lot-anim renderer="svg"  :animationData="getAnim('bell')"></lot-anim>
+                    <lot-anim
+                      renderer="svg"
+                      :animationData="getAnim('bell')"
+                    ></lot-anim>
                   </v-avatar>
                 </div>
                 <div class="mt-8">
@@ -152,11 +161,16 @@
                   @playing="vid_1.playing = true"
                   style="width: 100%; height: 500px;"
                 ></youtube>
-                <v-layout text-center justify-center align-content-center align-center>
+                <v-layout
+                  text-center
+                  justify-center
+                  align-content-center
+                  align-center
+                >
                   <v-flex xs10 sm7 md5 lg4>
                     <v-card-text class="caption front--text text--darken-1">
-                      We are launching soon. Join the priority list for information
-                      and early access.
+                      We are launching soon. Join the priority list for
+                      information and early access.
                     </v-card-text>
                   </v-flex>
                 </v-layout>
@@ -171,8 +185,15 @@
         <v-container>
           <v-row>
             <v-col v-for="(vid, i) in vids" :key="i" cols="12" lg="4">
-              <v-hover v-slot:default="{hover}">
-                <v-card shaped @click="runYvid(vid.url)" :elevation="hover ? '20' : '5'" :color="hover ? 'primback' : ''" :dark="hover" style="transition: .3s;">
+              <v-hover v-slot:default="{ hover }">
+                <v-card
+                  shaped
+                  @click="runYvid(vid.url)"
+                  :elevation="hover ? '20' : '5'"
+                  :color="hover ? 'primback' : ''"
+                  :dark="hover"
+                  style="transition: .3s;"
+                >
                   <v-img
                     :src="getYthumb(vid.url)"
                     aspect-ratio="1"
@@ -180,23 +201,17 @@
                     :class="[hover ? 'zoom-on-hover' : '']"
                     height="400"
                   >
-                    <v-layout
-                      fill-height
-                      align-center
-                      justify-center
-                      ma-0
-                    >
+                    <v-layout fill-height align-center justify-center ma-0>
                       <v-avatar size="50" :color="hover ? 'primback' : 'white'">
-                        <lot-anim renderer="svg" :className="hover ? 'svg-white' : ''" :animationData="getAnim('play-button-circled-scale')"></lot-anim>
+                        <lot-anim
+                          renderer="svg"
+                          :className="hover ? 'svg-white' : ''"
+                          :animationData="getAnim('play-button-circled-scale')"
+                        ></lot-anim>
                       </v-avatar>
                     </v-layout>
                     <template v-slot:placeholder>
-                      <v-layout
-                        fill-height
-                        align-center
-                        justify-center
-                        ma-0
-                      >
+                      <v-layout fill-height align-center justify-center ma-0>
                         <v-progress-circular
                           indeterminate
                           color="primary"
@@ -204,10 +219,29 @@
                       </v-layout>
                     </template>
                   </v-img>
-                  <v-card-subtitle v-text="vid.category" :class="['subtitle-2 pb-1', !hover ? 'primback--text text--lighten-4' : '']"></v-card-subtitle>
-                  <v-card-title v-text="vid.title" :class="[!hover ? 'primback--text text--lighten-3' : '', 'pt-0 line-height-x1 break-word']" style="font-size: 17px;"></v-card-title>
+                  <v-card-subtitle
+                    v-text="vid.category"
+                    :class="[
+                      'subtitle-2 pb-1',
+                      !hover ? 'primback--text text--lighten-4' : ''
+                    ]"
+                  ></v-card-subtitle>
+                  <v-card-title
+                    v-text="vid.title"
+                    :class="[
+                      !hover ? 'primback--text text--lighten-3' : '',
+                      'pt-0 line-height-x1 break-word'
+                    ]"
+                    style="font-size: 17px;"
+                  ></v-card-title>
                   <v-card-actions>
-                    <v-btn text :class="['text-capitalize subtitle-2 font-weight-simibold', !hover ? 'primback--text text--lighten-3' : '']">
+                    <v-btn
+                      text
+                      :class="[
+                        'text-capitalize subtitle-2 font-weight-simibold',
+                        !hover ? 'primback--text text--lighten-3' : ''
+                      ]"
+                    >
                       Watch the video
                       <span class="mx-1"></span>
                       <v-icon>mdi-play-circle-outline</v-icon>

@@ -40,7 +40,7 @@
     "vue-window-size": "^0.2.5",
     "vue-youtube": "^1.4.0",
     "vue2-editor": "^2.10.2",
-    "vuetify": "^2.1.12",
+    "vuetify": "^2.1.17",
     "vuex": "^3.0.1"
   },
   "devDependencies": {

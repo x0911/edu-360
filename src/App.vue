@@ -45,8 +45,8 @@ export default {
     YoutubeDialog: loadView("items/youtube-dialog")
   },
   created() {
-    // window.addEventListener('focus', this.addFocus);
-    // window.addEventListener('blur', this.addBlur);
+    window.addEventListener('focus', this.addFocus);
+    window.addEventListener('blur', this.addBlur);
   },
   mounted() {
     this.getLang();

@@ -6,9 +6,9 @@ import store from "./store";
 const fb = require("./firebase.config.js");
 import vuetify from "./plugins/vuetify";
 // import "roboto-fontface/css/roboto/roboto-fontface.css";
+import "@mdi/font/css/materialdesignicons.css";
 import "typeface-poppins";
 import "typeface-cairo";
-import "@mdi/font/css/materialdesignicons.css";
 
 // To be used in VUE
 import VueParticles from "vue-particles";
@@ -77,7 +77,7 @@ Vue.mixin({
     //     uid
     //   }).then(result => {
     //     if (result.data == "done") {
-          
+
     //     } else {
     //       $this.showError(result.data);
     //     }
@@ -310,16 +310,16 @@ Vue.mixin({
     },
     // Youtube
     stopYvid() {
-      return this.$store.state.youtube_dialog = {
+      return (this.$store.state.youtube_dialog = {
         url: "",
         model: false
-      };
+      });
     },
     runYvid(url) {
-      return this.$store.state.youtube_dialog = {
+      return (this.$store.state.youtube_dialog = {
         url,
         model: true
-      };
+      });
     }
   }
 });

@@ -1,10 +1,16 @@
 <template>
   <div>
-    <v-app-bar
-      app fixed elevate-on-scroll color="white"
-    >
-      <v-app-bar-nav-icon v-show="!$store.state.options['drawer']" @click.stop="$store.state.options['drawer'] = !$store.state.options['drawer']"></v-app-bar-nav-icon>
-      <v-toolbar-title class="headline primary--text" style="position: relative; overflow: visible">
+    <v-app-bar app fixed elevate-on-scroll color="white">
+      <v-app-bar-nav-icon
+        v-show="!$store.state.options['drawer']"
+        @click.stop="
+          $store.state.options['drawer'] = !$store.state.options['drawer']
+        "
+      ></v-app-bar-nav-icon>
+      <v-toolbar-title
+        class="headline primary--text"
+        style="position: relative; overflow: visible"
+      >
         Edu
         <v-avatar size="70" tile style="transform: translate(-12px)">
           <v-img :src="require('@/assets/title-icon.png')"></v-img>
@@ -19,11 +25,21 @@
           Go Premium
         </v-btn>
         <v-divider vertical></v-divider>
-        <v-btn @click.stop="$store.state.noti_options['drawer'] = !$store.state.noti_options['drawer']" depressed>
+        <v-btn
+          @click.stop="
+            $store.state.noti_options['drawer'] = !$store.state.noti_options[
+              'drawer'
+            ]
+          "
+          depressed
+        >
           <v-badge v-model="is_notis" color="error" overlap>
             <template v-slot:badge>7</template>
             <v-avatar size="25" tile>
-              <lot-anim renderer="svg" :animationData="getAnim('bell')"></lot-anim>
+              <lot-anim
+                renderer="svg"
+                :animationData="getAnim('bell')"
+              ></lot-anim>
             </v-avatar>
           </v-badge>
         </v-btn>
@@ -35,15 +51,11 @@
 const fb = require("@/firebase.config.js");
 export default {
   name: "topnav",
-  mounted() {
-    
-  },
+  mounted() {},
   data: () => ({
     app_nav: false
   }),
-  methods: {
-    
-  },
+  methods: {},
   computed: {
     notis() {
       return this.$store.state.notis;
@@ -52,5 +64,5 @@ export default {
       return this.notis && this.notis.length > 0 ? true : false;
     }
   }
-}
+};
 </script>

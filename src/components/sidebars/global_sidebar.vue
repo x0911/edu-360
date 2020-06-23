@@ -8,10 +8,7 @@
       :mini-variant="$store.state.options['mini_variant']"
       overflow
     >
-      <v-card
-        tile color="transparent" flat
-        height="230px"
-      >
+      <v-card tile color="transparent" flat height="230px">
         <v-img
           width="100%"
           height="140px"
@@ -23,13 +20,13 @@
         >
           <!-- https://www.pond5.com/images/images_db/vlp/image-hero-poster.jpg -->
           <template v-slot:placeholder>
-            <v-layout
-              fill-height
-              align-center
-              justify-center
-              ma-0
-            >
-              <v-skeleton-loader height="100%" width="100%" type="image" loading></v-skeleton-loader>
+            <v-layout fill-height align-center justify-center ma-0>
+              <v-skeleton-loader
+                height="100%"
+                width="100%"
+                type="image"
+                loading
+              ></v-skeleton-loader>
             </v-layout>
           </template>
           <div style="position: absolute; top: 5px; left: 5px;">
@@ -44,15 +41,9 @@
           </div>
           <div class="text-center" style="transform: translate(0, 80px)">
             <v-hover>
-              <template v-slot:default="{hover}">
-                <v-avatar
-                  size="80"
-                  color="white"
-                >
-                  <v-img
-                    src=""
-                    style="border: 4px solid white"
-                  >
+              <template v-slot:default="{ hover }">
+                <v-avatar size="80" color="white">
+                  <v-img src="" style="border: 4px solid white">
                     <!-- https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQToA9s3Y6-r1AO4iK79QL6hpW_6mlFDevRGvbg7Y7nc_UG2coM&s -->
                     <v-scale-transition>
                       <v-row
@@ -73,13 +64,11 @@
                       </v-row>
                     </v-scale-transition>
                     <template v-slot:placeholder>
-                      <v-layout
-                        fill-height
-                        align-center
-                        justify-center
-                        ma-0
-                      >
-                        <v-skeleton-loader type="avatar" loading></v-skeleton-loader>
+                      <v-layout fill-height align-center justify-center ma-0>
+                        <v-skeleton-loader
+                          type="avatar"
+                          loading
+                        ></v-skeleton-loader>
                       </v-layout>
                     </template>
                   </v-img>
@@ -88,8 +77,13 @@
             </v-hover>
             <v-list-item @click="updateUdata.name = true">
               <v-list-item-content>
-                <v-list-item-title v-text="getUdata('displayName', 'Click to add your name')" class="mb-1"></v-list-item-title>
-                <v-list-item-subtitle v-text="`#${getUdata('uid').substr(0, 7)}...`"></v-list-item-subtitle>
+                <v-list-item-title
+                  v-text="getUdata('displayName', 'Click to add your name')"
+                  class="mb-1"
+                ></v-list-item-title>
+                <v-list-item-subtitle
+                  v-text="`#${getUdata('uid').substr(0, 7)}...`"
+                ></v-list-item-subtitle>
               </v-list-item-content>
             </v-list-item>
           </div>
@@ -97,22 +91,41 @@
       </v-card>
       <v-divider></v-divider>
       <v-list class="pt-0">
-        <template v-for="(item,i) in single_items">
-          <v-divider v-if="item.divider" :key="i+'_d'"></v-divider>
-          <v-list-item @click="item.method ? runFun(item.method) : () => {}" :class="item.background" v-else color="primary" :to="item.url" exact :key="i">
+        <template v-for="(item, i) in single_items">
+          <v-divider v-if="item.divider" :key="i + '_d'"></v-divider>
+          <v-list-item
+            @click="item.method ? runFun(item.method) : () => {}"
+            :class="item.background"
+            v-else
+            color="primary"
+            :to="item.url"
+            exact
+            :key="i"
+          >
             <v-list-item-avatar v-if="item.avatar.icon">
-              <lot-anim renderer="svg" className="svg-grey darken-1" v-if="item.avatar.svg" style="height: 25px" :animationData="getAnim(item.avatar.icon)"></lot-anim>
+              <lot-anim
+                renderer="svg"
+                className="svg-grey darken-1"
+                v-if="item.avatar.svg"
+                style="height: 25px"
+                :animationData="getAnim(item.avatar.icon)"
+              ></lot-anim>
               <v-icon v-text="item.avatar.icon" v-else></v-icon>
             </v-list-item-avatar>
             <v-list-item-content>
               <v-list-item-title v-text="item.title"></v-list-item-title>
-              <v-list-item-subtitle v-text="item.subtitle"></v-list-item-subtitle>
+              <v-list-item-subtitle
+                v-text="item.subtitle"
+              ></v-list-item-subtitle>
             </v-list-item-content>
           </v-list-item>
         </template>
       </v-list>
     </v-navigation-drawer>
-    <update-u-name :dataModel="updateUdata.name" @hideModel="hideUpdateUdata('name')"></update-u-name>
+    <update-u-name
+      :dataModel="updateUdata.name"
+      @hideModel="hideUpdateUdata('name')"
+    ></update-u-name>
   </div>
 </template>
 
@@ -217,11 +230,11 @@ export default {
       return this[fun]();
     },
     hideUpdateUdata(toHide) {
-      return this.updateUdata[toHide] = false;
+      return (this.updateUdata[toHide] = false);
     },
     test() {
       // console.log("Tested");
     }
   }
-}
+};
 </script>
