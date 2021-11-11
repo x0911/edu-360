@@ -3,8 +3,14 @@
     <v-row>
       <template v-for="(vid, i) in vids">
         <v-col :key="i" cols="12" sm="6" xl="4" v-if="vid.url">
-          <v-hover v-slot:default="{hover}">
-            <v-card @click="runYvid(vid.url)" :elevation="hover ? '10' : '2'" :color="hover ? 'primback' : ''" :dark="hover" style="transition: .3s;">
+          <v-hover v-slot:default="{ hover }">
+            <v-card
+              :elevation="hover ? '10' : '2'"
+              :color="hover ? 'primback' : ''"
+              :dark="hover"
+              style="transition: .3s;"
+              @click="runYvid(vid.url)"
+            >
               <v-img
                 :src="getYthumb(vid.url)"
                 aspect-ratio="1"
@@ -12,43 +18,54 @@
                 :class="[hover ? 'zoom-on-hover' : '']"
                 height="250"
               >
-                <v-layout
-                  fill-height
-                  align-center
-                  justify-center
-                  ma-0
-                >
+                <v-layout fill-height align-center justify-center ma-0>
                   <v-avatar size="50" :color="hover ? 'primback' : 'white'">
-                    <lot-anim renderer="svg" :className="hover ? 'svg-white' : ''" :animationData="getAnim('play-button-circled-scale')"></lot-anim>
+                    <lot-anim
+                      renderer="svg"
+                      :className="hover ? 'svg-white' : ''"
+                      :animationData="getAnim('play-button-circled-scale')"
+                    ></lot-anim>
                   </v-avatar>
                 </v-layout>
                 <template v-slot:placeholder>
-                  <v-layout
-                    fill-height
-                    align-center
-                    justify-center
-                    ma-0
-                  >
-                    <v-skeleton-loader height="100%" width="100%" type="image" loading></v-skeleton-loader>
+                  <v-layout fill-height align-center justify-center ma-0>
+                    <v-skeleton-loader
+                      height="100%"
+                      width="100%"
+                      type="image"
+                      loading
+                    ></v-skeleton-loader>
                   </v-layout>
                 </template>
               </v-img>
               <v-list-item two-line>
                 <v-list-item-content>
                   <v-list-item-title
-                    v-text="vid.category" 
-                    :class="['subtitle-2', !hover ? 'primback--text text--lighten-4' : '']"
+                    v-text="vid.category"
+                    :class="[
+                      'subtitle-2',
+                      !hover ? 'primback--text text--lighten-4' : ''
+                    ]"
                     style="font-size: 11px;"
                   ></v-list-item-title>
                   <v-list-item-subtitle
                     v-text="vid.title"
-                    :class="[!hover ? 'primback--text text--lighten-2' : '', 'line-height-x1 break-word font-weight-medium']"
+                    :class="[
+                      !hover ? 'primback--text text--lighten-2' : '',
+                      'line-height-x1 break-word font-weight-medium'
+                    ]"
                     style="font-size: 18px; !important"
                   ></v-list-item-subtitle>
                 </v-list-item-content>
               </v-list-item>
               <v-card-actions>
-                <v-btn text :class="['text-capitalize subtitle-2 font-weight-simibold', !hover ? 'primback--text text--lighten-3' : '']">
+                <v-btn
+                  text
+                  :class="[
+                    'text-capitalize subtitle-2 font-weight-simibold',
+                    !hover ? 'primback--text text--lighten-3' : ''
+                  ]"
+                >
                   Watch the video
                   <span class="mx-1"></span>
                   <v-icon>mdi-play-circle-outline</v-icon>
@@ -134,7 +151,8 @@ export default {
         playing: false
       },
       {
-        title: "Flutter Crash Course for Beginners 2019 - Build a Flutter App with Google's Flutter & Dart",
+        title:
+          "Flutter Crash Course for Beginners 2019 - Build a Flutter App with Google's Flutter & Dart",
         category: "Flutter",
         url: "https://www.youtube.com/watch?v=x0uinJvhNxI",
         playing: false
@@ -159,5 +177,5 @@ export default {
       }
     ]
   })
-}
+};
 </script>

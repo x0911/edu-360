@@ -155,12 +155,17 @@
           <v-row>
             <v-col cols="12">
               <v-card flat tile color="transparent">
-                <youtube
-                  :video-id="getYid(vid_1.url)"
-                  ref="vid_1"
-                  @playing="vid_1.playing = true"
+                <vue-core-video-player
+                  class="clone-cover-to-poster"
                   style="width: 100%; height: 500px;"
-                ></youtube>
+                  :autoplay="false"
+                  :loop="false"
+                  :muted="false"
+                  controls
+                  :cover="require('@/assets/media/covers/vid-1.png')"
+                  :poster="require('@/assets/media/covers/vid-1.png')"
+                  :src="vid_1.url"
+                ></vue-core-video-player>
                 <v-layout
                   text-center
                   justify-center
@@ -188,14 +193,14 @@
               <v-hover v-slot:default="{ hover }">
                 <v-card
                   shaped
-                  @click="runYvid(vid.url)"
+                  @click="runYvid({ url: vid.url, cover: vid.cover })"
                   :elevation="hover ? '20' : '5'"
                   :color="hover ? 'primback' : ''"
                   :dark="hover"
                   style="transition: .3s;"
                 >
                   <v-img
-                    :src="getYthumb(vid.url)"
+                    :src="require(`@/assets/media/covers/vid-${i + 2}.png`)"
                     aspect-ratio="1"
                     position="center center"
                     :class="[hover ? 'zoom-on-hover' : '']"
@@ -263,33 +268,53 @@ export default {
   components: {},
   data: () => ({
     vid_1: {
-      url: "https://www.youtube.com/watch?v=T0taTtOgqd8",
+      url:
+        "https://drive.google.com/uc?export=download&id=1XE7CZDG1GIO4Ld9cYScIrcbAyDOWlmpX",
       playing: false
     },
     vids: [
       {
         title: "Helping chemists find the wasted material after each reaction.",
         category: "Pharmacology",
-        url: "https://www.youtube.com/watch?v=WpddWfIxzOw",
-        playing: false
+        url:
+          "https://drive.google.com/uc?export=download&id=1XE7CZDG1GIO4Ld9cYScIrcbAyDOWlmpX",
+        playing: false,
+        cover: require("@/assets/media/covers/vid-2.png")
       },
       {
         title: "Categorizing new medical atoms using Edu 360",
         category: "Medicine",
-        url: "https://www.youtube.com/watch?v=FYLoP6yfIRc",
-        playing: false
+        url:
+          "https://drive.google.com/uc?export=download&id=1XE7CZDG1GIO4Ld9cYScIrcbAyDOWlmpX",
+        playing: false,
+        cover: require("@/assets/media/covers/vid-3.png")
       },
       {
         title: "Utilizing deep learning and Edu 360 to better extreme weather",
         category: "Nano",
-        url: "https://www.youtube.com/watch?v=s6LrBex9NPA",
-        playing: false
+        url:
+          "https://drive.google.com/uc?export=download&id=1XE7CZDG1GIO4Ld9cYScIrcbAyDOWlmpX",
+        playing: false,
+        cover: require("@/assets/media/covers/vid-4.png")
       }
     ]
   }),
+  mounted() {
+    setTimeout(() => {
+      this.fixPoster();
+    }, 1000);
+  },
   methods: {
-    runYvid(url) {
-      this.$emit("runYvid", url);
+    runYvid(obj) {
+      this.$emit("runYvid", obj);
+    },
+    fixPoster() {
+      const els = document.getElementsByClassName("clone-cover-to-poster");
+      [...els].forEach((el) => {
+        const vid = el.children[0];
+        const cover = vid.getAttribute("cover");
+        vid.setAttribute("poster", cover);
+      });
     }
   }
 };

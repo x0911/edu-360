@@ -28,6 +28,8 @@ import { mask } from "vue-the-mask";
 Vue.directive("mask", mask);
 import VueYoutube from "vue-youtube";
 Vue.use(VueYoutube);
+import VueCoreVideoPlayer from "vue-core-video-player";
+Vue.use(VueCoreVideoPlayer);
 Vue.use(require("vue-moment"));
 import VueApexCharts from "vue-apexcharts";
 Vue.component("apexChart", VueApexCharts);
@@ -47,7 +49,7 @@ import "@/custom/js/main.js";
 Vue.config.productionTip = false;
 
 let app;
-fb.auth.onAuthStateChanged(user => {
+fb.auth.onAuthStateChanged((user) => {
   if (!app) {
     app = new Vue({
       created() {
@@ -62,7 +64,7 @@ fb.auth.onAuthStateChanged(user => {
       router,
       store,
       vuetify,
-      render: h => h(App)
+      render: (h) => h(App)
     }).$mount("#app");
   }
 });
@@ -191,7 +193,7 @@ Vue.mixin({
         // console.log(code);
         let defaultMsg =
             "A network error occured. Please refresh page and try again.",
-          showError = code => {
+          showError = (code) => {
             this.$store.state.appError.msg = errors[code]
               ? errors[code]
               : defaultMsg;
@@ -218,7 +220,7 @@ Vue.mixin({
           let href = document.location.href;
           document.location.href = href;
         })
-        .catch(err => {
+        .catch((err) => {
           // console.log(err);
         });
     },
@@ -227,16 +229,16 @@ Vue.mixin({
         .replace("_", " ")
         .toLowerCase()
         .split(" ")
-        .map(s => s.charAt(0).toUpperCase() + s.substring(1))
+        .map((s) => s.charAt(0).toUpperCase() + s.substring(1))
         .join(" ");
       return ucfirst;
     },
     arr_obj_unique(arr, comp) {
       let unique = arr
-        .map(e => e[comp])
+        .map((e) => e[comp])
         .map((e, i, final) => final.indexOf(e) === i && i)
-        .filter(e => arr[e])
-        .map(e => arr[e]);
+        .filter((e) => arr[e])
+        .map((e) => arr[e]);
       return unique;
     },
     changeTheme(theme) {
@@ -312,12 +314,14 @@ Vue.mixin({
     stopYvid() {
       return (this.$store.state.youtube_dialog = {
         url: "",
+        cover: "",
         model: false
       });
     },
-    runYvid(url) {
+    runYvid({ url, cover }) {
       return (this.$store.state.youtube_dialog = {
         url,
+        cover,
         model: true
       });
     }
