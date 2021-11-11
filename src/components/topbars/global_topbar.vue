@@ -11,9 +11,13 @@
         class="headline primary--text"
         style="position: relative; overflow: visible"
       >
-        Edu
-        <v-avatar size="70" tile style="transform: translate(-12px)">
-          <v-img :src="require('@/assets/title-icon.png')"></v-img>
+        <v-avatar
+          height="70"
+          width="246"
+          tile
+          style="transform: translate(-7px, -1px) scale(0.7)"
+        >
+          <v-img :src="require('@/assets/logo.png')"></v-img>
         </v-avatar>
         <!-- Edu <span class="font-weight-simibold">360</span> -->
         <!-- <span class="display-2" style="position: absolute; top: 50%; right: 0; transform: translate(0, -50%)">|</span> -->

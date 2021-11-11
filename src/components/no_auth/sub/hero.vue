@@ -21,9 +21,20 @@
             <v-row>
               <v-col cols="12" sm="10" md="9" lg="6" xl="5">
                 <v-card dark flat tile color="transparent">
-                  <v-card-title class="display-2 break-word"
-                    >Edu 360</v-card-title
-                  >
+                  <v-card-title class="display-2 break-word align-baseline">
+                    <span style="color: #2aa9f1;" class="font-weight-bold">
+                      AR
+                    </span>
+                    <span style="color: #ea3135;" class="font-weight-bold">
+                      Med
+                    </span>
+                    <span
+                      style="color: #2aa9f1; font-size: 24px"
+                      class="font-weight-bold text-caption"
+                    >
+                      VR
+                    </span>
+                  </v-card-title>
                   <v-card-text>
                     <v-chip
                       color="primback lighten-1"
@@ -304,7 +315,7 @@ export default {
           }
         }
       );
-      window.recaptchaVerifier.render().then(widgetId => {
+      window.recaptchaVerifier.render().then((widgetId) => {
         window.recaptchaWidgetId = widgetId;
       });
     }

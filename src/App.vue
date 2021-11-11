@@ -15,7 +15,11 @@
           <no-auth-landing></no-auth-landing>
         </v-content>
       </v-app>
-      <youtube-dialog @hide_dialog="stopYvid" :url="$store.state.youtube_dialog.url" :model="$store.state.youtube_dialog.model"></youtube-dialog>
+      <youtube-dialog
+        :url="$store.state.youtube_dialog.url"
+        :model="$store.state.youtube_dialog.model"
+        @hide_dialog="stopYvid"
+      ></youtube-dialog>
     </div>
     <div v-else>
       <div id="app-preloader">
@@ -45,8 +49,8 @@ export default {
     YoutubeDialog: loadView("items/youtube-dialog")
   },
   created() {
-    window.addEventListener('focus', this.addFocus);
-    window.addEventListener('blur', this.addBlur);
+    // window.addEventListener('focus', this.addFocus);
+    // window.addEventListener('blur', this.addBlur);
   },
   mounted() {
     this.getLang();
@@ -59,18 +63,18 @@ export default {
   computed: {
     current_user() {
       return this.$store.state.currentUser;
-    },
+    }
   },
   methods: {
     addFocus() {
-      return this.appActive = true;
+      return (this.appActive = true);
     },
     addBlur() {
-      return this.appActive = false;
+      return (this.appActive = false);
     },
     getLang() {
-      let langs = ['ar', 'en'], 
-        lang = this.$cookies.get('gen_lang');
+      let langs = ["ar", "en"],
+        lang = this.$cookies.get("gen_lang");
       if (langs.includes(lang)) this.changeLang(lang);
     },
     handleConnectivityChange(status) {

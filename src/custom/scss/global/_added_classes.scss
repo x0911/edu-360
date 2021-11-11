@@ -91,7 +91,7 @@ $line_heights: 1,2,3,4,5,6;
 }
 
 // Letter Spacing
-@for $i from 1 through 5 {
+@for $i from 0 through 5 {
     .ls-#{$i} {
         letter-spacing: #{$i}px
     }
