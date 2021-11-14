@@ -48,8 +48,9 @@
                     class="subtitle-2 line-height-x1"
                     style="font-size: 16px !important"
                   >
-                    Whether you're graduated or a student, Edu 360 is an
-                    educational platform that bla bla bla for you to learn.
+                    Whether you're graduated or a student, ARMedVR is an
+                    educational platform that will help you to study in an
+                    interactive way using AR and VR Technologies
                   </v-card-text>
                   <v-card-text>
                     <v-tabs-items

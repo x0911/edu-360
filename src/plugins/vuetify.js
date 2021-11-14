@@ -4,7 +4,13 @@ import Vuetify from "vuetify/lib";
 Vue.use(Vuetify);
 
 export default new Vuetify({
+  rtl: false,
+  treeShake: true,
+  customVariables: ["@/assets/custom/scss/vuetify_variables.scss"],
   theme: {
+    options: {
+      customProperties: true,
+    },
     themes: {
       light: {
         primary: "#1976D2",

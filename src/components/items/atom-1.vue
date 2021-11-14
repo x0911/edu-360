@@ -52,7 +52,7 @@
 .svg-container {
   svg {
     .circle-1 {
-      box-shadow: 2px 4px 8px black 
+      box-shadow: 2px 4px 8px black;
     }
   }
 }

@@ -2,7 +2,7 @@ import Vue from "vue";
 import Vuex from "vuex";
 
 Vue.use(Vuex);
-let app_title = "Edu 360";
+let app_title = "ARMedVR";
 
 export default new Vuex.Store({
   state: {

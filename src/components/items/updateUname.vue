@@ -30,8 +30,17 @@
         <v-divider></v-divider>
         <v-card-actions class="pt-4">
           <v-spacer></v-spacer>
-          <v-btn class="text-capitalize px-6" large text @click="hideModel">Cancel</v-btn>
-          <v-btn class="text-capitalize px-6" large color="primary" depressed @click="update">Update</v-btn>
+          <v-btn class="text-capitalize px-6" large text @click="hideModel"
+            >Cancel</v-btn
+          >
+          <v-btn
+            class="text-capitalize px-6"
+            large
+            color="primary"
+            depressed
+            @click="update"
+            >Update</v-btn
+          >
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -44,7 +53,10 @@ export default {
   name: "updateUname",
   props: ["dataModel"],
   mounted() {
-    this.data = this.current_user && this.current_user.displayName ? this.current_user.displayName.trim() : "";
+    this.data =
+      this.current_user && this.current_user.displayName
+        ? this.current_user.displayName.trim()
+        : "";
   },
   data: () => ({
     data: "",
@@ -59,18 +71,21 @@ export default {
     update() {
       this.loading = true;
       let $this = this,
-          current_user = $this.current_user,
-          displayName = $this.data;
+        current_user = $this.current_user,
+        displayName = $this.data;
       if (displayName.trim().length >= 4) {
-        current_user.updateProfile({
-          displayName
-        }).then(() => {
-          $this.loading = false;
-          $this.hideModel();
-        }).catch(error => {
-          $this.loading = false;
-          $this.showError(error.code);
-        });
+        current_user
+          .updateProfile({
+            displayName
+          })
+          .then(() => {
+            $this.loading = false;
+            $this.hideModel();
+          })
+          .catch((error) => {
+            $this.loading = false;
+            $this.showError(error.code);
+          });
       } else {
         $this.loading = false;
         $this.showError("displayName-empty");
@@ -80,5 +95,5 @@ export default {
       return this.$emit("hideModel");
     }
   }
-}
+};
 </script>

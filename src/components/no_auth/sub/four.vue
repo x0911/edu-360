@@ -20,7 +20,8 @@
                 <v-card-title
                   class="break-word display-1 line-height-3 font-weight-light"
                 >
-                  Edu 360 makes learning fun and performance fast
+                  ARMedVR makes learning interactive and Fun... You can join us
+                  as A Content creator
                 </v-card-title>
               </v-card>
             </v-col>
@@ -54,13 +55,13 @@
                 </div>
                 <div class="mt-8">
                   <v-card-title class="px-0 py-1 d-block">
-                    Create content
+                    Create Content
                   </v-card-title>
                   <v-card-text
                     class="subtitle-1 text--front px-0 line-height-x1"
                   >
-                    Ipsum incididunt tempor veniam voluptate anim anim officia
-                    dolore.
+                    You can create Educational content with the help of our
+                    technologies
                   </v-card-text>
                 </div>
               </v-card>
@@ -86,8 +87,8 @@
                   <v-card-text
                     class="subtitle-1 text--front px-0 line-height-x1"
                   >
-                    Incididunt dolore dolor ipsum mollit ullamco magna nulla
-                    voluptate.
+                    Then, you can upload the content to our platform ( After our
+                    experts revision )
                   </v-card-text>
                 </div>
               </v-card>
@@ -113,8 +114,9 @@
                   <v-card-text
                     class="subtitle-1 text--front px-0 line-height-x1"
                   >
-                    Sint magna ut exercitation qui tempor eu in aliquip
-                    voluptate do duis.
+                    finally, We will notify you that the content has uploaded
+                    successfully to our platform and inform you with your
+                    percentage of the content profits.
                   </v-card-text>
                 </div>
               </v-card>
@@ -138,9 +140,9 @@
             <v-col cols="12">
               <v-card flat tile color="transparent">
                 <v-card-title class="break-word d-block">
-                  It's fun and creative.
+                  It's fun, creative, and interactive.
                   <span class="font-weight-regular"
-                    >Try your first expreience with Edu 360.</span
+                    >Try your first expreience with ARMedVR.</span
                   >
                 </v-card-title>
               </v-card>
@@ -268,30 +270,31 @@ export default {
   components: {},
   data: () => ({
     vid_1: {
+      title: "Anatomy of The Eye",
       url:
         "https://drive.google.com/uc?export=download&id=1XE7CZDG1GIO4Ld9cYScIrcbAyDOWlmpX",
       playing: false
     },
     vids: [
       {
-        title: "Helping chemists find the wasted material after each reaction.",
-        category: "Pharmacology",
+        title: "Anatomy and Physiology of the human eye ( introduction )",
+        category: "Anatomy of The Eye",
         url:
           "https://drive.google.com/uc?export=download&id=1XE7CZDG1GIO4Ld9cYScIrcbAyDOWlmpX",
         playing: false,
         cover: require("@/assets/media/covers/vid-2.png")
       },
       {
-        title: "Categorizing new medical atoms using Edu 360",
-        category: "Medicine",
+        title: "Angina Pectoris , The definition , Causes and Treatment",
+        category: "Human Heart",
         url:
           "https://drive.google.com/uc?export=download&id=1XE7CZDG1GIO4Ld9cYScIrcbAyDOWlmpX",
         playing: false,
         cover: require("@/assets/media/covers/vid-3.png")
       },
       {
-        title: "Utilizing deep learning and Edu 360 to better extreme weather",
-        category: "Nano",
+        title: "Introduction to Organic Chemistry",
+        category: "Organic Chemistry",
         url:
           "https://drive.google.com/uc?export=download&id=1XE7CZDG1GIO4Ld9cYScIrcbAyDOWlmpX",
         playing: false,

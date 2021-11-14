@@ -27,7 +27,14 @@
         </v-card-text>
         <v-divider></v-divider>
         <v-card-actions v-if="value == 100" class="mb-2">
-          <v-btn @click="refresh" class="text-capitalize px-6" :color="color" dark large block>
+          <v-btn
+            @click="refresh"
+            class="text-capitalize px-6"
+            :color="color"
+            dark
+            large
+            block
+          >
             Refresh Now
           </v-btn>
         </v-card-actions>
@@ -42,7 +49,7 @@ export default {
   mounted() {
     this.interval = setInterval(() => {
       if (this.appUpdated) {
-        return this.value = 100;
+        return (this.value = 100);
       } else {
         if (this.value < 90) return (this.value += 10);
       }

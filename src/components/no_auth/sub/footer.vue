@@ -1,7 +1,10 @@
 <template>
   <div>
     <!-- <v-divider></v-divider> -->
-    <v-footer class="primback pb-0 justify-center align-center align-content-center text-center" dark>
+    <v-footer
+      class="primback pb-0 justify-center align-center align-content-center text-center"
+      dark
+    >
       <v-container class="pb-0 mb-0" fluid>
         <div style="transform: translate(0, 40px)">
           <v-row>
@@ -35,15 +38,31 @@
           </v-row>
           <v-row>
             <v-col cols="12">
-              <span class="primback--text text--lighten-5">Copyright &copy; 2020 :</span>
+              <span class="primback--text text--lighten-5"
+                >Copyright &copy; 2022 :</span
+              >
               <span class="mx-1"></span>
-              <span>Edu 360</span>
+              <span>
+                <span style="color: #2aa9f1;" class="font-weight-bold">AR</span>
+                <span style="color: #ea3135;" class="font-weight-bold"
+                  >Med</span
+                >
+                <sub
+                  style="color: #2aa9f1; transform: translate(0, -2px)"
+                  class="font-weight-bold d-inline-block"
+                  >VR</sub
+                >
+              </span>
             </v-col>
           </v-row>
         </div>
         <v-row class="pb-0">
           <v-col cols="12" class="pb-0">
-            <v-img style="opacity: .3" :src="require('@/assets/media/imgs/footer-lines.svg')" width="100%"></v-img>
+            <v-img
+              style="opacity: .3"
+              :src="require('@/assets/media/imgs/footer-lines.svg')"
+              width="100%"
+            ></v-img>
           </v-col>
         </v-row>
       </v-container>
@@ -75,7 +94,7 @@ export default {
   }),
   methods: {
     getLottieInstance(lottieInstance, i) {
-      this.social[i].instance = lottieInstance
+      this.social[i].instance = lottieInstance;
     },
     animPlay(i) {
       this.social[i].instance && this.social[i].instance.play();

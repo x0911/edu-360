@@ -29,13 +29,20 @@
                 class="text-capitalize"
                 >Community</v-btn
               >
-              <v-btn depressed class="text-capitalize ls-0">
+              <v-btn
+                depressed
+                class="text-capitalize ls-0 align-items-baseline"
+              >
                 Why
                 <span style="color: #2aa9f1;" class="font-weight-bold">AR</span>
                 <span style="color: #ea3135;" class="font-weight-bold"
                   >Med</span
                 >
-                <sub style="color: #2aa9f1;" class="font-weight-bold">VR</sub>?
+                <sub
+                  style="color: #2aa9f1; transform: translate(0, -1px)"
+                  class="font-weight-bold;"
+                  >VR</sub
+                >?
               </v-btn>
               <v-btn depressed>
                 <v-icon>mdi-translate</v-icon>

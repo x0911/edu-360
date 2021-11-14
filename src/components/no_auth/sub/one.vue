@@ -28,7 +28,9 @@
                   <v-btn text class="text-capitalize">
                     Learn More
                     <span class="mx-1"></span>
-                    <v-icon class="rotateOnLangNigative" small>mdi-keyboard-backspace</v-icon>
+                    <v-icon class="rotateOnLangNigative" small
+                      >mdi-keyboard-backspace</v-icon
+                    >
                   </v-btn>
                 </v-card-actions>
               </v-card>
